@@ -1,0 +1,9 @@
+Para que el WS funcione correctamente se debe hacer referencia a estos dlls
+esto en el caso que se este descargando por primera vez el proyecto.
+
+Si no se hace esto por mas que en las referencias este los dlls sapnco.dll y sapnco_utils.dll no funcionara las conexiones a SAP
+hay q bajar los archivos copiarlos en algun lugar fisico y volver hacer la referencia a ellos
+
+Se puede verificar esto cuando se publica el servicio en la carpeta bin debe estar los dlls, no sirve copiarlos directamente tiene que ser compilado
+
+Atte Lucho.

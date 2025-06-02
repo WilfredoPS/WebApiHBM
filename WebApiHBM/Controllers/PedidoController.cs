@@ -19,26 +19,17 @@ namespace WebApiHBM.Controllers
         public object RealizarPedido(HBM_Orders pedido)
         {
             ConexionSAP = new ConectaSAP();
-            //ConexionSAP.NombreConfiguracion = "CALIDAD";
-            //ConexionSAP.Servidor = "192.168.1.22";
-            //ConexionSAP.Usuario = "RFC";
-            //ConexionSAP.Contrasena = "abap2008";
-            //ConexionSAP.Mandante = "300";
-            //ConexionSAP.SistemaID = "QAS";
-            //ConexionSAP.Lenguaje = "ES";
-            //ConexionSAP.Instancia = "00";
-            //ConexionSAP.PoolSize = "5";
-
-            ConexionSAP.NombreConfiguracion = "PRODUCTIVO";
-            ConexionSAP.Servidor = "hannacaioerp";
+            ConexionSAP.NombreConfiguracion = "CALIDAD";
+            ConexionSAP.Servidor = "192.168.1.22";
             ConexionSAP.Usuario = "RFC";
             ConexionSAP.Contrasena = "abap2008";
             ConexionSAP.Mandante = "300";
-            ConexionSAP.SistemaID = "PRD";
+            ConexionSAP.SistemaID = "QAS";
             ConexionSAP.Lenguaje = "ES";
-            ConexionSAP.Instancia = "01";
+            ConexionSAP.Instancia = "00";
             ConexionSAP.PoolSize = "5";
 
+            
             string documento, mensaje_usuario, json;
             string MensajeSalida = string.Empty;
             string cabecera = pedido.cabecera.ToString();
@@ -147,28 +138,20 @@ namespace WebApiHBM.Controllers
         [HttpPost]
         public object ProductoStock(StockProd producto)
         {
-            //ConexionSAP = new ConectaSAP();
-            //ConexionSAP.NombreConfiguracion = "CALIDAD";
-            //ConexionSAP.Servidor = "192.168.1.22";
-            //ConexionSAP.Usuario = "RFC";
-            //ConexionSAP.Contrasena = "abap2008";
-            //ConexionSAP.Mandante = "300";
-            //ConexionSAP.SistemaID = "QAS";
-            //ConexionSAP.Lenguaje = "ES";
-            //ConexionSAP.Instancia = "00";
-            //ConexionSAP.PoolSize = "5";
-
-            ConexionSAP.NombreConfiguracion = "PRODUCTIVO";
-            ConexionSAP.Servidor = "hannacaioerp";
+            ConexionSAP = new ConectaSAP();
+            ConexionSAP.NombreConfiguracion = "CALIDAD";
+            ConexionSAP.Servidor = "192.168.1.22";
             ConexionSAP.Usuario = "RFC";
             ConexionSAP.Contrasena = "abap2008";
             ConexionSAP.Mandante = "300";
-            ConexionSAP.SistemaID = "PRD";
+            ConexionSAP.SistemaID = "QAS";
             ConexionSAP.Lenguaje = "ES";
-            ConexionSAP.Instancia = "01";
+            ConexionSAP.Instancia = "00";
             ConexionSAP.PoolSize = "5";
 
-       
+
+
+
             string cadena = producto.ProductCode.ToString().PadLeft(18, '0');
 
             string MensajeSalida = string.Empty;

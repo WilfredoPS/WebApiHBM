@@ -24,6 +24,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
+    - name: Verify project structure
+      run: |
+        ls -Recurse -File
+        echo "PROJECT_PATH: ${{ env.PROJECT_PATH }}"
+        Test-Path ${{ env.PROJECT_PATH }} -PathType Leaf
 
     - name: Restore dependencies
       run: dotnet restore ${{ env.PROJECT_PATH }}

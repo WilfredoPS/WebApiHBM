@@ -10,7 +10,7 @@ env:
   DOTNET_VERSION: '6.0.x'  # O '7.0.x' si usas .NET 7
   PROJECT_PATH: 'src/WebApiHBM/WebApiHBM.csproj'
   PUBLISH_FOLDER: 'publish'
-  SERVER: 'hannacwebq01'
+  SERVER: 'http://hannacwebq01.hansa.com.bo/'
   DEPLOY_PATH: 'C:\inetpub\wwwroot\MiServicioWeb'
 
 jobs:

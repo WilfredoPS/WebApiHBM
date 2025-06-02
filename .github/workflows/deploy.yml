@@ -9,7 +9,7 @@ on:
 env:
   DOTNET_VERSION: '6.0.x'  # O '8.0.x' si prefieres .NET 8
   PUBLISH_FOLDER: 'publish'
-  SERVER: 'hannacwebq01'
+  SERVER: 'http://hannacwebq01.hansa.com.bo/'
   DEPLOY_PATH: 'C:\inetpub\wwwroot\WebApiHBM_prueba'
 
 jobs:

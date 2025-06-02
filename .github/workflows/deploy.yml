@@ -1,4 +1,4 @@
-name: Build and Deploy .NET Web Service
+name: Build and Deploy WebApiHBM
 
 on:
   push:
@@ -7,11 +7,10 @@ on:
     branches: [ main ]
 
 env:
-  DOTNET_VERSION: '6.0.x'  # O '7.0.x' si usas .NET 7
-  PROJECT_PATH: 'src/WebApiHBM/WebApiHBM.csproj'
+  DOTNET_VERSION: '6.0.x'  # O '8.0.x' si prefieres .NET 8
   PUBLISH_FOLDER: 'publish'
-  SERVER: 'http://hannacwebq01.hansa.com.bo/'
-  DEPLOY_PATH: 'C:\inetpub\wwwroot\MiServicioWeb'
+  SERVER: 'hannacwebq01'
+  DEPLOY_PATH: 'C:\inetpub\wwwroot\WebApiHBM_prueba'
 
 jobs:
   build:
@@ -20,15 +19,26 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Verify repository structure
+      run: |
+        ls -Recurse
+        echo "Current directory: $(Get-Location)"
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-    - name: Verify project structure
+
+    - name: Find project file
+      id: find-project
       run: |
-        ls -Recurse -File
-        echo "PROJECT_PATH: ${{ env.PROJECT_PATH }}"
-        Test-Path ${{ env.PROJECT_PATH }} -PathType Leaf
+        $project = Get-ChildItem -Recurse -Filter *.csproj | Select-Object -First 1
+        if (-not $project) {
+          Write-Error "No .csproj file found in repository"
+          exit 1
+        }
+        echo "PROJECT_PATH=$($project.FullName)" >> $env:GITHUB_ENV
+        echo "Found project at: $($project.FullName)"
 
     - name: Restore dependencies
       run: dotnet restore ${{ env.PROJECT_PATH }}
@@ -45,7 +55,6 @@ jobs:
     - name: Zip artifacts
       run: |
         Compress-Archive -Path ${{ env.PUBLISH_FOLDER }}\* -DestinationPath publish.zip
-        Write-Output "ARTIFACT_NAME=publish.zip" >> $env:GITHUB_ENV
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4

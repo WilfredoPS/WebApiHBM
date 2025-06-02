@@ -43,6 +43,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ${{ env.PROJECT_PATH }}
 
+    - name: Fix project file
+      run: |
+        (Get-Content WebApiHBM.csproj) -replace 
+          '<Import Project="\$\(VSToolsPath\)\\WebApplications\\Microsoft\.WebApplication\.targets" />',
+          '<Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk.Web" />' | 
+          Set-Content WebApiHBM.csproj
     - name: Build
       run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
 
